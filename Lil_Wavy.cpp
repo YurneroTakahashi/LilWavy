@@ -1,12 +1,26 @@
-﻿// Lil_Wavy.cpp: определяет точку входа для приложения.
-//
+﻿#include "Lil_Wavy.h"
+#include <portaudio.h>
 
-#include "Lil_Wavy.h"
 
-using namespace std;
+static void checkErr(PaError err) {
+	if (err != paNoError) {
+		std::cout << "PortAudio Error: " << Pa_GetErrorText(err);
+		exit(EXIT_FAILURE);
+	}
+}
+
 
 int main()
 {
-	cout << "Hello CMake." << endl;
-	return 0;
+	PaError err;
+	err = Pa_Initialize();
+	checkErr(err);
+
+
+
+
+	err = Pa_Terminate();
+	checkErr(err);
+
+	return EXIT_SUCCESS;
 }
